@@ -3,9 +3,12 @@
   import Bullet from "./Bullet.svelte";
   import Enemy from "./Enemy.svelte";
   import Message from "./Message.svelte";
+  import Stats from "./Stats.svelte";
+
   import { bulletList } from "../stores/cannon";
   import { enemyList } from "../stores/enemy";
   import { isDefeated, isPlaying } from "../stores/game";
+  import { startGame } from "../gameLoop/gameLoop";
 </script>
 
 <style>
@@ -22,13 +25,32 @@
     text-align: center;
     font-size: 32px;
   }
+
+  .button {
+    outline: none;
+    border: 1px solid black;
+    border-radius: 4px;
+    height: 60px;
+    width: 200px;
+    font-size: 20px;
+  }
+
+  .button:hover {
+    cursor: pointer;
+    background-color: #bdbdbd;
+  }
 </style>
 
 <div class="container">
+  {#if $isPlaying}
+    <Stats />
+  {/if}
   {#if !$isPlaying}
     <Message>
       {#if $isDefeated}
         <span class="message">You are defeated</span>
+        <!-- <Stats /> -->
+        <button class="button" on:click={startGame}>Start again</button>
       {/if}
     </Message>
   {/if}

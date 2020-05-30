@@ -1,7 +1,6 @@
 <script>
   import Controls from "./components/Controls.svelte";
   import GameField from "./components/GameField.svelte";
-  import Stats from "./components/Stats.svelte";
 
   import { startGame } from "./gameLoop/gameLoop.js";
 
@@ -23,6 +22,5 @@
   }
 </style>
 
-<Stats />
 <Controls />
 <GameField />

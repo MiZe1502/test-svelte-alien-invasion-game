@@ -5,6 +5,15 @@ import { rotateCannon, shoot, moveBullet, clearBullets } from "./cannon";
 import { addEnemy, moveEnemy } from "./enemy";
 import { checkCollision, checkDefeat } from "./game";
 import { GameState } from "./utils";
+import { shoots, frags } from "../stores/stats";
+import { enemyList, lastEnemyAddedAt } from "../stores/enemy";
+import {
+	direction,
+	angle,
+	isFiring,
+	lastFireAt,
+	bulletList
+} from "../stores/cannon";
 
 function startLoop(steps) {
 	window.requestAnimationFrame(() => {
@@ -20,8 +29,23 @@ function startLoop(steps) {
 	});
 }
 
-export const startGame = () => {
+function clearGameState() {
+	shoots.set(0);
+	frags.set(0);
+	enemyList.set([]);
+	lastEnemyAddedAt.set(0);
+	direction.set(null);
+	angle.set(0);
+	isFiring.set(false);
+	lastFireAt.set(0);
+	bulletList.set([]);
+	isWinning.set(false);
+	isDefeated.set(false);
 	isPlaying.set(true);
+}
+
+export const startGame = () => {
+	clearGameState();
 	startLoop([
 		rotateCannon,
 		shoot,
