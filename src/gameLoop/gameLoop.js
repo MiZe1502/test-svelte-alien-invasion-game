@@ -1,9 +1,10 @@
-import { isPlaying } from "../stores/game";
+import { isPlaying, isDefeated, isWinning } from "../stores/game";
 
 import { get } from "svelte/store";
 import { rotateCannon, shoot, moveBullet, clearBullets } from "./cannon";
 import { addEnemy, moveEnemy } from "./enemy";
 import { checkCollision, checkDefeat } from "./game";
+import { GameState } from "./utils";
 
 function startLoop(steps) {
 	window.requestAnimationFrame(() => {
@@ -33,6 +34,16 @@ export const startGame = () => {
 	]);
 };
 
-export function stopGame() {
+export function stopGame(status) {
 	isPlaying.set(false);
+	switch (status) {
+		case GameState.Win:
+			isWinning.set(true);
+			break;
+		case GameState.Defeat:
+			isDefeated.set(true);
+			break;
+		default:
+			break;
+	}
 }

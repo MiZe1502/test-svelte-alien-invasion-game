@@ -8,6 +8,7 @@ import {
 	bulletList
 } from "../stores/cannon";
 import { shoots } from "../stores/stats";
+import { ScreenSize } from "./utils";
 
 export function rotateCannon() {
 	const currentAngle = get(angle);
@@ -35,7 +36,7 @@ export function shoot() {
 			...bullets,
 			{
 				x: 238,
-				y: 760,
+				y: ScreenSize,
 				angle: get(angle),
 				id: () => Math.random() + Date.now()
 			}

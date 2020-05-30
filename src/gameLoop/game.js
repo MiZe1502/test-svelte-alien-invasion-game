@@ -5,6 +5,7 @@ import { removeBullet } from "./cannon";
 import { removeEnemy } from "./enemy";
 import { frags } from "../stores/stats";
 import { stopGame } from "./gameLoop";
+import { GameState, ScreenSize } from "./utils";
 
 const enemyWidth = 30;
 const bulletWidth = 5;
@@ -30,8 +31,8 @@ export function checkCollision() {
 
 export function checkDefeat() {
 	get(enemyList).forEach(enemy => {
-		if (enemy.y + enemyHeight >= 760) {
-			stopGame();
+		if (enemy.y + enemyHeight >= ScreenSize) {
+			stopGame(GameState.Defeat);
 		}
 	});
 }
