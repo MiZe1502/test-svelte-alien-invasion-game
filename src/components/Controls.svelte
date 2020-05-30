@@ -11,6 +11,42 @@
 
   const startFire = () => isFiring.set(true);
   const stopFire = () => isFiring.set(false);
+
+  function handleKeydown(event) {
+    const code = event.code;
+
+    switch (code) {
+      case "Space":
+        startFire();
+        break;
+      case "ArrowLeft":
+        setDirectionLeft();
+        break;
+      case "ArrowRight":
+        setDirectionRight();
+        break;
+      default:
+        break;
+    }
+  }
+
+  function handleKeyup(event) {
+    const code = event.code;
+
+    switch (code) {
+      case "Space":
+        stopFire();
+        break;
+      case "ArrowLeft":
+        resetDirection();
+        break;
+      case "ArrowRight":
+        resetDirection();
+        break;
+      default:
+        break;
+    }
+  }
 </script>
 
 <style>
@@ -33,6 +69,8 @@
     width: 150px;
   }
 </style>
+
+<svelte:window on:keydown={handleKeydown} on:keyup={handleKeyup} />
 
 <div class="controls">
   <div class="container">
