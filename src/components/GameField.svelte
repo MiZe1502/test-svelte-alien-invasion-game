@@ -39,17 +39,23 @@
     cursor: pointer;
     background-color: #bdbdbd;
   }
+
+  .statsWrapper {
+    position: fixed;
+  }
 </style>
 
 <div class="container">
   {#if $isPlaying}
-    <Stats />
+    <div class="statsWrapper">
+      <Stats />
+    </div>
   {/if}
   {#if !$isPlaying}
     <Message>
       {#if $isDefeated}
         <span class="message">You are defeated</span>
-        <!-- <Stats /> -->
+        <Stats />
         <button class="button" on:click={startGame}>Start again</button>
       {/if}
     </Message>

@@ -15,7 +15,6 @@
     height: 100px;
     padding: 10px;
     box-sizing: border-box;
-    position: fixed;
   }
 
   .statsRow {

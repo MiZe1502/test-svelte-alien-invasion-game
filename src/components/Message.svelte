@@ -15,6 +15,7 @@
     align-self: center;
     z-index: 2;
     background-color: darkgray;
+    gap: 16px;
   }
 </style>
 
