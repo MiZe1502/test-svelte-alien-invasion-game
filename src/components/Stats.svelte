@@ -1,5 +1,6 @@
 <script>
   import { frags, shoots } from "../stores/stats";
+  import { level } from "../stores/game";
   import { get } from "svelte/store";
 
   $: efficiency = $shoots > 0 ? $frags / $shoots : 0;
@@ -12,7 +13,6 @@
     border: 1px solid black;
     border-radius: 4px;
     width: 150px;
-    height: 100px;
     padding: 10px;
     box-sizing: border-box;
   }
@@ -41,5 +41,9 @@
   <div class="statsRow">
     <span>Accuracy:</span>
     <span>{(efficiency * 100).toFixed(1)}%</span>
+  </div>
+  <div class="statsRow">
+    <span>Level:</span>
+    <span>{$level}</span>
   </div>
 </div>

@@ -1,9 +1,9 @@
-import { isPlaying, isDefeated, isWinning } from "../stores/game";
+import { isPlaying, isDefeated, isWinning, level } from "../stores/game";
 
 import { get } from "svelte/store";
 import { rotateCannon, shoot, moveBullet, clearBullets } from "./cannon";
 import { addEnemy, moveEnemy } from "./enemy";
-import { checkCollision, checkDefeat } from "./game";
+import { checkCollision, checkDefeat, checkLevel } from "./game";
 import { GameState } from "./utils";
 import { shoots, frags } from "../stores/stats";
 import { enemyList, lastEnemyAddedAt } from "../stores/enemy";
@@ -38,6 +38,7 @@ function clearGameState() {
 	angle.set(0);
 	isFiring.set(false);
 	lastFireAt.set(0);
+	level.set(1);
 	bulletList.set([]);
 	isWinning.set(false);
 	isDefeated.set(false);
@@ -54,7 +55,8 @@ export const startGame = () => {
 		addEnemy,
 		moveEnemy,
 		checkCollision,
-		checkDefeat
+		checkDefeat,
+		checkLevel
 	]);
 };
 

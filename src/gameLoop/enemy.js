@@ -1,5 +1,6 @@
 import { get } from "svelte/store";
 import { lastEnemyAddedAt, enemyList } from "../stores/enemy";
+import { level } from "../stores/game";
 
 export function addEnemy() {
 	if (Date.now() - get(lastEnemyAddedAt) > 2500) {
@@ -22,7 +23,7 @@ export function moveEnemy() {
 		return enemyList.map(enemy => {
 			return {
 				...enemy,
-				y: enemy.y + 0.5
+				y: enemy.y + 0.5 * get(level)
 			};
 		});
 	});

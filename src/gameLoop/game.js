@@ -6,6 +6,7 @@ import { removeEnemy } from "./enemy";
 import { frags } from "../stores/stats";
 import { stopGame } from "./gameLoop";
 import { GameState, ScreenSize } from "./utils";
+import { level } from "../stores/game";
 
 const enemyWidth = 30;
 const bulletWidth = 5;
@@ -37,3 +38,8 @@ export function checkDefeat() {
 	});
 }
 
+export function checkLevel() {
+	if (get(frags) >= get(level) * 10) {
+		level.update(level => (level += 1));
+	}
+}
