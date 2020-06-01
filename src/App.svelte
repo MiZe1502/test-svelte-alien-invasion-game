@@ -1,10 +1,6 @@
 <script>
   import Controls from "./components/Controls.svelte";
   import GameField from "./components/GameField.svelte";
-
-  import { startGame } from "./gameLoop/gameLoop.js";
-
-  startGame();
 </script>
 
 <style>

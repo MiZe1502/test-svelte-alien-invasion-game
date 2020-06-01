@@ -57,6 +57,8 @@
         <span class="message">You are defeated</span>
         <Stats />
         <button class="button" on:click={startGame}>Start again</button>
+      {:else}
+        <button class="button" on:click={startGame}>New game</button>
       {/if}
     </Message>
   {/if}
