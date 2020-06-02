@@ -4,6 +4,7 @@
   import Enemy from "./Enemy.svelte";
   import Message from "./Message.svelte";
   import Stats from "./Stats.svelte";
+  import LivesSelector from "./LivesSelector.svelte";
 
   import { bulletList } from "../stores/cannon";
   import { enemyList } from "../stores/enemy";
@@ -56,9 +57,11 @@
       {#if $isDefeated}
         <span class="message">You are defeated</span>
         <Stats />
+        <LivesSelector />
         <button class="button" on:click={startGame}>Start again</button>
       {:else}
         <button class="button" on:click={startGame}>New game</button>
+        <LivesSelector />
       {/if}
     </Message>
   {/if}

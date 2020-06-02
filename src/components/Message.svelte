@@ -3,7 +3,7 @@
     position: fixed;
     top: 33.3%;
     max-width: 50%;
-    max-height: 50%;
+    max-height: 70%;
     min-height: 200px;
     min-width: 60%;
     border: 1px solid black;
