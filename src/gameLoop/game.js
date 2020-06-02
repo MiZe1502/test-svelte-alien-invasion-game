@@ -4,9 +4,9 @@ import { enemyList } from "../stores/enemy";
 import { removeBullet } from "./cannon";
 import { removeEnemy } from "./enemy";
 import { frags } from "../stores/stats";
-import { stopGame } from "./gameLoop";
+import { stopGame, clearGameState } from "./gameLoop";
 import { GameState, ScreenSize } from "./utils";
-import { level } from "../stores/game";
+import { level, livesCount } from "../stores/game";
 
 const enemyWidth = 30;
 const bulletWidth = 5;
@@ -33,7 +33,13 @@ export function checkCollision() {
 export function checkDefeat() {
 	get(enemyList).forEach(enemy => {
 		if (enemy.y + enemyHeight >= ScreenSize) {
-			stopGame(GameState.Defeat);
+			livesCount.update(livesCount => livesCount - 1);
+			console.log(get(livesCount));
+			if (get(livesCount) <= 0) {
+				stopGame(GameState.Defeat);
+			} else {
+				clearGameState();
+			}
 		}
 	});
 }

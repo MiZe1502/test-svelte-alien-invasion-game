@@ -26,7 +26,7 @@
   <input
     class="input"
     id="livesCountInput"
-    value={$livesCount}
+    bind:value={$livesCount}
     min="1"
     max="10"
     type="number"

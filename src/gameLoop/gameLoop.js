@@ -1,4 +1,11 @@
-import { isPlaying, isDefeated, isWinning, level } from "../stores/game";
+import {
+	isPlaying,
+	isDefeated,
+	isWinning,
+	level,
+	livesCount,
+	initLivesCount
+} from "../stores/game";
 
 import { get } from "svelte/store";
 import { rotateCannon, shoot, moveBullet, clearBullets } from "./cannon";
@@ -29,7 +36,7 @@ function startLoop(steps) {
 	});
 }
 
-function clearGameState() {
+export function clearGameState() {
 	shoots.set(0);
 	frags.set(0);
 	enemyList.set([]);
@@ -68,6 +75,7 @@ export function stopGame(status) {
 			break;
 		case GameState.Defeat:
 			isDefeated.set(true);
+			livesCount.set(initLivesCount);
 			break;
 		default:
 			break;
