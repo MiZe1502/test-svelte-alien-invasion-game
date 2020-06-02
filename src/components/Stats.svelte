@@ -1,6 +1,6 @@
 <script>
   import { frags, shoots } from "../stores/stats";
-  import { level, livesCount } from "../stores/game";
+  import { level } from "../stores/game";
   import { get } from "svelte/store";
 
   $: efficiency = $shoots > 0 ? $frags / $shoots : 0;
@@ -45,9 +45,5 @@
   <div class="statsRow">
     <span>Level:</span>
     <span>{$level}</span>
-  </div>
-    <div class="statsRow">
-    <span>Attempts:</span>
-    <span>{$livesCount}</span>
   </div>
 </div>

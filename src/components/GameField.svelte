@@ -4,6 +4,7 @@
   import Enemy from "./Enemy.svelte";
   import Message from "./Message.svelte";
   import Stats from "./Stats.svelte";
+  import Attempts from "./Attempts.svelte";
   import LivesSelector from "./LivesSelector.svelte";
 
   import { bulletList } from "../stores/cannon";
@@ -44,12 +45,19 @@
   .statsWrapper {
     position: fixed;
   }
+
+  .attemptsWrapper {
+    right: 8px;
+  }
 </style>
 
 <div class="container">
   {#if $isPlaying}
     <div class="statsWrapper">
       <Stats />
+    </div>
+    <div class="statsWrapper attemptsWrapper" >
+      <Attempts />
     </div>
   {/if}
   {#if !$isPlaying}

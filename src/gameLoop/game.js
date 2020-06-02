@@ -38,7 +38,7 @@ export function checkDefeat() {
 			if (get(livesCount) <= 0) {
 				stopGame(GameState.Defeat);
 			} else {
-				clearGameState();
+				clearGameState(false);
 			}
 		}
 	});

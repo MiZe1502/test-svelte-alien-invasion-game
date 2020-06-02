@@ -36,7 +36,7 @@ function startLoop(steps) {
 	});
 }
 
-export function clearGameState() {
+export function clearGameState(isTerminated) {
 	shoots.set(0);
 	frags.set(0);
 	enemyList.set([]);
@@ -45,7 +45,7 @@ export function clearGameState() {
 	angle.set(0);
 	isFiring.set(false);
 	lastFireAt.set(0);
-	level.set(1);
+	isTerminated && level.set(1);
 	bulletList.set([]);
 	isWinning.set(false);
 	isDefeated.set(false);
@@ -53,7 +53,7 @@ export function clearGameState() {
 }
 
 export const startGame = () => {
-	clearGameState();
+	clearGameState(true);
 	startLoop([
 		rotateCannon,
 		shoot,
