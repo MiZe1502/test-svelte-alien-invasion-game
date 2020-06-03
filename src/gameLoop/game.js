@@ -2,7 +2,7 @@ import { get } from "svelte/store";
 import { bulletList } from "../stores/cannon";
 import { enemyList } from "../stores/enemy";
 import { removeBullet } from "./cannon";
-import { removeEnemy } from "./enemy";
+import { removeEnemy, updateEnemyDamage } from "./enemy";
 import { frags } from "../stores/stats";
 import { stopGame, clearGameState } from "./gameLoop";
 import { GameState, ScreenSize } from "./utils";
@@ -23,8 +23,11 @@ export function checkCollision() {
 				bullet.y + bulletHeight > enemy.y
 			) {
 				removeBullet(bullet.id);
-				removeEnemy(enemy.id);
-				frags.update(frag => (frag += 1));
+				updateEnemyDamage(enemy.id);
+				if (enemy.damageCount === 0) {
+					removeEnemy(enemy.id);
+					frags.update(frag => (frag += 1));
+				}
 			}
 		});
 	});

@@ -37,8 +37,8 @@ function startLoop(steps) {
 }
 
 export function clearGameState(isTerminated) {
-	shoots.set(0);
-	frags.set(0);
+	isTerminated && shoots.set(0);
+	isTerminated && frags.set(0);
 	enemyList.set([]);
 	lastEnemyAddedAt.set(0);
 	direction.set(null);
