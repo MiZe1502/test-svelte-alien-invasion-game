@@ -8,6 +8,8 @@ export const enemyType = {
 	High: "High"
 };
 
+export const defaultEnemySize = 30;
+
 export const damageByEnemyType = {
 	[enemyType.Low]: 1,
 	[enemyType.Medium]: 2,
@@ -18,6 +20,12 @@ export const colorByEnemyType = {
 	[enemyType.Low]: "green",
 	[enemyType.Medium]: "orange",
 	[enemyType.High]: "red"
+};
+
+export const sizeByEnemyType = {
+	[enemyType.Low]: defaultEnemySize,
+	[enemyType.Medium]: defaultEnemySize * 2,
+	[enemyType.High]: defaultEnemySize * 3
 };
 
 export function getRandomEnemyType(obj) {
@@ -38,7 +46,8 @@ export function addEnemy() {
 					id: () => Math.random() + Date.now(),
 					type: type,
 					damageCount: damageByEnemyType[type],
-					color: colorByEnemyType[type]
+					color: colorByEnemyType[type],
+					size: sizeByEnemyType[type]
 				}
 			];
 		});
@@ -58,7 +67,7 @@ export function moveEnemy() {
 
 export function updateEnemyDamage(id) {
 	enemyList.update(enemies => {
-		enemies.find(enemy => enemy.id === id).damageCount -= 1
+		enemies.find(enemy => enemy.id === id).damageCount -= 1;
 		return enemies;
 	});
 }

@@ -2,24 +2,22 @@ import { get } from "svelte/store";
 import { bulletList } from "../stores/cannon";
 import { enemyList } from "../stores/enemy";
 import { removeBullet } from "./cannon";
-import { removeEnemy, updateEnemyDamage } from "./enemy";
+import { removeEnemy, updateEnemyDamage, sizeByEnemyType } from "./enemy";
 import { frags } from "../stores/stats";
 import { stopGame, clearGameState } from "./gameLoop";
 import { GameState, ScreenSize } from "./utils";
 import { level, livesCount } from "../stores/game";
 
-const enemyWidth = 30;
 const bulletWidth = 5;
-const enemyHeight = 30;
 const bulletHeight = 8;
 
 export function checkCollision() {
 	get(bulletList).forEach(bullet => {
 		get(enemyList).forEach(enemy => {
 			if (
-				bullet.x < enemy.x + enemyWidth &&
+				bullet.x < enemy.x + sizeByEnemyType[enemy.type] &&
 				bullet.x + bulletWidth > enemy.x &&
-				bullet.y < enemy.y + enemyHeight &&
+				bullet.y < enemy.y + sizeByEnemyType[enemy.type] &&
 				bullet.y + bulletHeight > enemy.y
 			) {
 				removeBullet(bullet.id);
@@ -35,7 +33,7 @@ export function checkCollision() {
 
 export function checkDefeat() {
 	get(enemyList).forEach(enemy => {
-		if (enemy.y + enemyHeight >= ScreenSize) {
+		if (enemy.y + sizeByEnemyType[enemy.type] >= ScreenSize) {
 			livesCount.update(livesCount => livesCount - 1);
 			console.log(get(livesCount));
 			if (get(livesCount) <= 0) {
